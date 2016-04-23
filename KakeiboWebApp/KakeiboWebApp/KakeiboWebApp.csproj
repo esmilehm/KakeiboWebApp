@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AC875EFA-B505-4EFF-86CA-6CB0F4B03EF6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KakeiboWebApp</RootNamespace>
+    <AssemblyName>KakeiboWebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FrameworkClassicTea, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\GraffitiDLL\FrameworkClassicTea.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="JavaScript\KakeiboWeb.js" />
+    <Content Include="js\bootstrap-datepicker.ja.min.js" />
+    <Content Include="js\bootstrap-datepicker.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-1.11.3.min.js" />
+    <Content Include="js\npm.js" />
+    <Content Include="Style\styleCommon.css" />
+    <Content Include="Style\styleDebugColumn.css" />
+    <Content Include="View\ViewDetailForm.aspx" />
+    <Content Include="View\ViewListForm.aspx" />
+    <Content Include="View\ViewLogin.aspx" />
+    <Content Include="View\ViewMenu.aspx" />
+    <Content Include="View\ViewSummaryForm.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\DataSetKakeibo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetKakeibo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelDetailForm.cs" />
+    <Compile Include="Model\ModelListForm.cs" />
+    <Compile Include="Model\ModelSummaryForm.cs" />
+    <Compile Include="Model\ModeMenuForm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptAddItemName.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptDetail.cs" />
+    <Compile Include="Service\ServiceGetTblItemMaster.cs" />
+    <Compile Include="Service\ServiceGetTblReceipt.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSearchYearMonth.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSummaryYearMonth.cs" />
+    <Compile Include="Service\ServiceUpdateTblReceiptDetail.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSearchDay.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSearchDays.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSearchDaysAndGoods.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSearchGoods.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptMenu.cs" />
+    <Compile Include="Service\ServiceGetTblItemMasterMenu.cs" />
+    <Compile Include="Service\ServiceGetTblReceiptSummary.cs" />
+    <Compile Include="View\ViewDetailForm.aspx.cs">
+      <DependentUpon>ViewDetailForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ViewDetailForm.aspx.designer.cs">
+      <DependentUpon>ViewDetailForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewListForm.aspx.cs">
+      <DependentUpon>ViewListForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ViewListForm.aspx.designer.cs">
+      <DependentUpon>ViewListForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewLogin.aspx.cs">
+      <DependentUpon>ViewLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ViewLogin.aspx.designer.cs">
+      <DependentUpon>ViewLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewMenu.aspx.cs">
+      <DependentUpon>ViewMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ViewMenu.aspx.designer.cs">
+      <DependentUpon>ViewMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewSummaryForm.aspx.cs">
+      <DependentUpon>ViewSummaryForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ViewSummaryForm.aspx.designer.cs">
+      <DependentUpon>ViewSummaryForm.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\DataSetKakeibo.xsc">
+      <DependentUpon>DataSetKakeibo.xsd</DependentUpon>
+    </None>
+    <None Include="Data\DataSetKakeibo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetKakeibo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\DataSetKakeibo.xss">
+      <DependentUpon>DataSetKakeibo.xsd</DependentUpon>
+    </None>
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.svg" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1083</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,7 @@
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\bin\KakeiboWebApp.dll
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\bin\KakeiboWebApp.pdb
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\bin\FrameworkClassicTea.dll
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\bin\FrameworkClassicTea.pdb
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\obj\Release\KakeiboWebApp.dll
+C:\Documents and Settings\Owner\my documents\visual studio 2010\Projects\KakeiboWebApp\KakeiboWebApp\obj\Release\KakeiboWebApp.pdb
