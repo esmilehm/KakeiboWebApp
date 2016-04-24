@@ -482,6 +482,8 @@ namespace KakeiboWebApp.Model
             // note 14/2/15 考察；この処理を各プロパティに入れると、値無しでエラーになるので、ここにまとめておく
             this._dsKakeibo = ((ModelDetailForm)svGet._model).dsKakeibo;
             this._tblReceipt = ((ModelDetailForm)svGet._model).dsKakeibo.tblReceipt;
+            // TODO 更新方法を検討中
+            this._tblReceipt_Update = ((ModelDetailForm)svGet._model).dsKakeibo.tblReceipt_Update;
             
             this._date = ((ModelDetailForm)svGet._model).date;
             this._goods = ((ModelDetailForm)svGet._model).goods;
@@ -504,13 +506,25 @@ namespace KakeiboWebApp.Model
             ServiceUpdateTblReceiptDetail gtUpdate = new ServiceUpdateTblReceiptDetail();
 
             //--- 画面からのtblReceiptを反映 ---
-            this._tblReceipt_Update[0].DATE = DateTime.Parse(this._date);
-            this._tblReceipt_Update[0].GOODS = this._goods;
-            this._tblReceipt_Update[0].PRICE = this._price;
-            this._tblReceipt_Update[0].ITEM_ID = byte.Parse(this._itemid.ToString());
-            //todo 14/5/6 品目詳細IDと品目詳細名は、まだ未使用のため仮値を設定
-            //this._tblReceipt_Update[0].ITEM_DETAILS_ID = byte.Parse(this._itemdetailsid.ToString());
-            this._tblReceipt_Update[0].ITEM_DETAILS_ID = 0;
+            // todo 16/04/24 ViewかModelで検索した際に、インスタンス生成していれば不要と思う
+            this._tblReceipt_Update = new DataSetKakeibo.tblReceipt_UpdateDataTable();
+            DataSetKakeibo.tblReceipt_UpdateRow dr = this._tblReceipt_Update.NewtblReceipt_UpdateRow();
+            dr.DATE = DateTime.Parse(this._date);
+            dr.GOODS = this._goods;
+            dr.PRICE = this._price;
+            dr.ITEM_ID = byte.Parse(this._itemid.ToString());
+            dr.ITEM_DETAILS_ID = 0;
+            this._tblReceipt_Update.AddtblReceipt_UpdateRow(dr);
+
+            //---
+            //this._tblReceipt_Update[0].DATE = DateTime.Parse(this._date);
+            //this._tblReceipt_Update[0].GOODS = this._goods;
+            //this._tblReceipt_Update[0].PRICE = this._price;
+            //this._tblReceipt_Update[0].ITEM_ID = byte.Parse(this._itemid.ToString());
+            ////todo 14/5/6 品目詳細IDと品目詳細名は、まだ未使用のため仮値を設定
+            ////this._tblReceipt_Update[0].ITEM_DETAILS_ID = byte.Parse(this._itemdetailsid.ToString());
+            //this._tblReceipt_Update[0].ITEM_DETAILS_ID = 0;
+            //-----------
 
             // 更新用コントロールのmodelプロパテｨに画面用コントロールのmodelプロパテｨを反映させる
             ((ModelDetailForm)gtUpdate._model)._tblReceipt_Update = this._tblReceipt_Update;
@@ -618,7 +632,14 @@ namespace KakeiboWebApp.Model
             ServiceUpdateTblReceiptDetail gtDelete = new ServiceUpdateTblReceiptDetail();
 
             //--- tblReceiptのレコードを削除にする ---
+            // todo 16/04/24 ViewかModelで検索した際に、インスタンス生成していれば不要と思う
+            this._tblReceipt_Update = new DataSetKakeibo.tblReceipt_UpdateDataTable();
+            DataSetKakeibo.tblReceipt_UpdateRow dr = this._tblReceipt_Update.NewtblReceipt_UpdateRow();
+            dr.ID = this._tblReceipt[0].ID;
+            this._tblReceipt_Update.AddtblReceipt_UpdateRow(dr);
             this._tblReceipt_Update[0].Delete();
+
+            //this._tblReceipt_Update[0].Delete();
 
             // 更新用コントロールのmodelプロパテｨに画面用コントロールのmodelプロパテｨを反映させる
             ((ModelDetailForm)gtDelete._model)._tblReceipt_Update = this._tblReceipt_Update;

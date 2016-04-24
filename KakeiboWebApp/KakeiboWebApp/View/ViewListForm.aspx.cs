@@ -306,17 +306,36 @@ namespace KakeiboWebApp.View
 
             //--- 検索する日付でDataSetを取得する
             //todo 14/05/06 日付の判定はViewが良いのか？それとも、Serviceか？検討する。Viewはどこまでif文を使わず処理できるようにするかの方が良いか？
-            if (txtSearchDayOne.Text == string.Empty & txtSearchDayTwo.Text == string.Empty & txtSearchGoods.Text == string.Empty)
+            if (txtSearchDayOne.Text == string.Empty &
+                txtSearchDayTwo.Text == string.Empty &
+                txtSearchItem.Text   == string.Empty &
+                txtSearchGoods.Text  == string.Empty)
             {
                 // 全件検索
                 _model = new ModelListForm();
             }
-            else if (txtSearchDayTwo.Text == string.Empty & txtSearchGoods.Text == string.Empty)
+            else if (txtSearchDayOne.Text != string.Empty &
+                     txtSearchDayTwo.Text == string.Empty &
+                     txtSearchItem.Text == string.Empty &
+                     txtSearchGoods.Text == string.Empty)
             {
-                // 日付指定検索
+                // 開始日のみ指定検索
                 _model = new ModelListForm(DateTime.Parse(txtSearchDayOne.Text));
             }
-            else if (txtSearchDayOne.Text != string.Empty & txtSearchDayTwo.Text != string.Empty & txtSearchItem.Text != string.Empty)
+            else if (txtSearchDayOne.Text != string.Empty &
+                     txtSearchDayTwo.Text != string.Empty &
+                     txtSearchItem.Text   == string.Empty &
+                     txtSearchGoods.Text  == string.Empty)
+            {
+                // 日付範囲指定検索
+                _model = new ModelListForm(
+                    DateTime.Parse(txtSearchDayOne.Text),
+                    DateTime.Parse(txtSearchDayTwo.Text));
+            }
+            else if (txtSearchDayOne.Text != string.Empty &
+                     txtSearchDayTwo.Text != string.Empty &
+                     txtSearchItem.Text != string.Empty &
+                     txtSearchGoods.Text == string.Empty)
             {
                 // 日付範囲指定と品目名で検索
                 _model = new ModelListForm(
@@ -325,26 +344,44 @@ namespace KakeiboWebApp.View
                     txtSearchItem.Text,
                     true);
             }
-            else if (txtSearchGoods.Text == string.Empty)
+            else if (txtSearchDayOne.Text != string.Empty &
+                     txtSearchDayTwo.Text != string.Empty &
+                     txtSearchItem.Text == string.Empty &
+                     txtSearchGoods.Text != string.Empty)
             {
-                // 日付範囲指定検索
-                _model = new ModelListForm(
-                    DateTime.Parse(txtSearchDayOne.Text),
-                    DateTime.Parse(txtSearchDayTwo.Text));
-            }
-            else if (txtSearchDayOne.Text == string.Empty & txtSearchDayTwo.Text == string.Empty & txtSearchGoods.Text != string.Empty)
-            {
-                // 商品名で検索
-                _model = new ModelListForm(txtSearchGoods.Text);
-            }
-            else if (txtSearchDayOne.Text != string.Empty & txtSearchDayTwo.Text != string.Empty & txtSearchGoods.Text != string.Empty)
-            { 
                 // 日付範囲指定と商品名で検索
                 _model = new ModelListForm(
                     DateTime.Parse(txtSearchDayOne.Text),
                     DateTime.Parse(txtSearchDayTwo.Text),
                     txtSearchGoods.Text);
             }
+            else if (txtSearchDayOne.Text == string.Empty &
+                     txtSearchDayTwo.Text == string.Empty &
+                     txtSearchItem.Text != string.Empty &
+                     txtSearchGoods.Text != string.Empty)
+            {
+                // 品目名と商品名で検索
+                // TODO 品目名と商品名だけで検索するサービスを追加する
+                _model = new ModelListForm();
+            }
+            else if (txtSearchDayOne.Text == string.Empty &
+                     txtSearchDayTwo.Text == string.Empty &
+                     txtSearchItem.Text   != string.Empty &
+                     txtSearchGoods.Text  == string.Empty)
+            {
+                // 品目名で検索
+                // TODO 品目名だけで検索するサービスを追加する
+                _model = new ModelListForm();
+            }
+            else if (txtSearchDayOne.Text == string.Empty &
+                     txtSearchDayTwo.Text == string.Empty &
+                     txtSearchItem.Text == string.Empty &
+                     txtSearchGoods.Text != string.Empty)
+            {
+                // 商品名で検索
+                _model = new ModelListForm(txtSearchGoods.Text);
+            }
+
 
 
             //--- 初期処理を呼ぶ ---
