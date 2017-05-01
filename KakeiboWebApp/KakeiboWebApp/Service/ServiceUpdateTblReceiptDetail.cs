@@ -60,11 +60,13 @@ namespace KakeiboWebApp.Service
         #region ４．プライベートメソッド
 
         #region UpdateDataSet
+
         /// <summary>
         /// 家計簿DB（Access）のtblReceiptへ更新処理を行う
         /// </summary>
         /// <remarks>
-        /// todo 14/2/10 テーブル反映結果がViewに返せて無い。resultをViewに渡して、メッセージを表示する等。
+        /// todo 14/02/10 テーブル反映結果がViewに返せて無い。resultをViewに渡して、メッセージを表示する等。
+        /// todo 17/05/01 ModelDetailForm.csでtblReceipt_Updateが空だった。原因は、ServiceGetTblReceiptDetailでtblReceipt_Updateに何もセットしてないためだった。
         /// </remarks>
         private void UpdateDataSet()
         {

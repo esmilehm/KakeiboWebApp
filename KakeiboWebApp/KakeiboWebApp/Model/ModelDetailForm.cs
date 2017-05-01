@@ -507,23 +507,24 @@ namespace KakeiboWebApp.Model
 
             //--- 画面からのtblReceiptを反映 ---
             // todo 16/04/24 ViewかModelで検索した際に、インスタンス生成していれば不要と思う
-            this._tblReceipt_Update = new DataSetKakeibo.tblReceipt_UpdateDataTable();
-            DataSetKakeibo.tblReceipt_UpdateRow dr = this._tblReceipt_Update.NewtblReceipt_UpdateRow();
-            dr.DATE = DateTime.Parse(this._date);
-            dr.GOODS = this._goods;
-            dr.PRICE = this._price;
-            dr.ITEM_ID = byte.Parse(this._itemid.ToString());
-            dr.ITEM_DETAILS_ID = 0;
-            this._tblReceipt_Update.AddtblReceipt_UpdateRow(dr);
+            //this._tblReceipt_Update = new DataSetKakeibo.tblReceipt_UpdateDataTable();
+            //DataSetKakeibo.tblReceipt_UpdateRow dr = this._tblReceipt_Update.NewtblReceipt_UpdateRow();
+            //dr.DATE = DateTime.Parse(this._date);
+            //dr.GOODS = this._goods;
+            //dr.PRICE = this._price;
+            //dr.ITEM_ID = byte.Parse(this._itemid.ToString());
+            //dr.ITEM_DETAILS_ID = 0;
+            //this._tblReceipt_Update.AddtblReceipt_UpdateRow(dr);
+            //---
 
             //---
-            //this._tblReceipt_Update[0].DATE = DateTime.Parse(this._date);
-            //this._tblReceipt_Update[0].GOODS = this._goods;
-            //this._tblReceipt_Update[0].PRICE = this._price;
-            //this._tblReceipt_Update[0].ITEM_ID = byte.Parse(this._itemid.ToString());
-            ////todo 14/5/6 品目詳細IDと品目詳細名は、まだ未使用のため仮値を設定
-            ////this._tblReceipt_Update[0].ITEM_DETAILS_ID = byte.Parse(this._itemdetailsid.ToString());
-            //this._tblReceipt_Update[0].ITEM_DETAILS_ID = 0;
+            this._tblReceipt_Update[0].DATE = DateTime.Parse(this._date);
+            this._tblReceipt_Update[0].GOODS = this._goods;
+            this._tblReceipt_Update[0].PRICE = this._price;
+            this._tblReceipt_Update[0].ITEM_ID = byte.Parse(this._itemid.ToString());
+            //todo 14/5/6 品目詳細IDと品目詳細名は、まだ未使用のため仮値を設定
+            //this._tblReceipt_Update[0].ITEM_DETAILS_ID = byte.Parse(this._itemdetailsid.ToString());
+            this._tblReceipt_Update[0].ITEM_DETAILS_ID = 0;
             //-----------
 
             // 更新用コントロールのmodelプロパテｨに画面用コントロールのmodelプロパテｨを反映させる
@@ -625,9 +626,47 @@ namespace KakeiboWebApp.Model
         /// <summary>
         /// レコードを削除
         /// </summary>
+        /// <remarks>
+        /// 【課題】
+        /// 削除が出来ない
+        /// 検索して削除しようと思ったが、idが渡ってないため、nullで落ちる。
+        /// </remarks>
         private void DeleteRecordForTable()
         {
 
+            #region 削除処理　検討2
+            this.tblReceipt_Update.Rows[0].Delete();
+
+            ServiceUpdateTblReceiptDetail gtDelete = new ServiceUpdateTblReceiptDetail();
+
+            ((ModelDetailForm)gtDelete._model).tblReceipt_Update = this.tblReceipt_Update;
+
+            // 更新用コントロールのmodelプロパテｨに画面用コントロールのmodelプロパテｨを反映させる
+            ((ModelDetailForm)gtDelete._model)._tblReceipt_Update = this._tblReceipt_Update;
+            #endregion
+
+            #region 削除処理 検討１
+            /*
+            //--- tblReceiptの値を取得するControlを実行 ---
+            ServiceGetTblReceiptDetail gtDelete = new ServiceGetTblReceiptDetail(id);
+            ((ModelDetailForm)gtDelete._model).id = id; // コンストラクタで渡せてないため、フィールドで渡す
+            gtDelete.doStart();
+
+            this._tblReceipt_Update = ((ModelDetailForm)gtDelete._model).dsKakeibo.tblReceipt_Update;
+
+            if (this._tblReceipt_Update.Rows.Count.Equals(0)) 
+            {
+                this._tblReceipt_Update.Rows[0].Delete();
+            }
+
+            // 更新用コントロールのmodelプロパテｨに画面用コントロールのmodelプロパテｨを反映させる
+            ((ModelDetailForm)gtDelete._model)._tblReceipt_Update = this._tblReceipt_Update;
+            
+            */
+            #endregion
+
+            #region 削除処理 修正前
+            /*
             //--- 削除用のコントロールを生成 ---
             ServiceUpdateTblReceiptDetail gtDelete = new ServiceUpdateTblReceiptDetail();
 
@@ -636,13 +675,24 @@ namespace KakeiboWebApp.Model
             this._tblReceipt_Update = new DataSetKakeibo.tblReceipt_UpdateDataTable();
             DataSetKakeibo.tblReceipt_UpdateRow dr = this._tblReceipt_Update.NewtblReceipt_UpdateRow();
             dr.ID = this._tblReceipt[0].ID;
-            this._tblReceipt_Update.AddtblReceipt_UpdateRow(dr);
-            this._tblReceipt_Update[0].Delete();
+            
+            // note 003
+            //this._tblReceipt_Update.Rows.Add(dr);
+            //this._tblReceipt_Update.Rows[0].Delete();
 
+            // note 002
+            //this._tblReceipt_Update.AddtblReceipt_UpdateRow(dr);
             //this._tblReceipt_Update[0].Delete();
 
+            // note 001
+            //this._tblReceipt_Update[0].Delete();
+           
             // 更新用コントロールのmodelプロパテｨに画面用コントロールのmodelプロパテｨを反映させる
             ((ModelDetailForm)gtDelete._model)._tblReceipt_Update = this._tblReceipt_Update;
+            
+            */
+            #endregion
+
 
 
             //--- 削除処理を実行 ---

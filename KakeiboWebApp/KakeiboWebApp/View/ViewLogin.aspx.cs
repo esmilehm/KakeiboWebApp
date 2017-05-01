@@ -40,6 +40,20 @@ namespace KakeiboWebApp.View
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //---ポストバック処理 ---
+            if (!IsPostBack) 
+            {
+                // 全てのセッションを破棄
+                // NOTE: 意図しないセッションまで消すのでコメントアウト Session.RemoveAll();
+
+                // 指定のセッションを破棄
+                Session.Remove("txtSearchDayOne");
+                Session.Remove("txtSearchDayTwo");
+                Session.Remove("txtSearchGoods");
+                Session.Remove("txtSearchItem");
+            }
+
         }
         #endregion
 

@@ -1533,11 +1533,14 @@ namespace KakeiboWebApp.Data {
                 base.Columns.Add(this.columnSYUSHI);
                 this.columnITEM_DETAILS_ID = new global::System.Data.DataColumn("ITEM_DETAILS_ID", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnITEM_DETAILS_ID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("tblReceiptKey1", new global::System.Data.DataColumn[] {
+                                this.columnID}, false));
                 this.columnITEM.MaxLength = 20;
                 this.columnGOODS.MaxLength = 50;
                 this.columnID.AutoIncrement = true;
                 this.columnID.AutoIncrementSeed = -1;
                 this.columnID.AutoIncrementStep = -1;
+                this.columnID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2334,7 +2337,7 @@ namespace KakeiboWebApp.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tblReceipt_UpdateRow[] GettblReceiptRows() {
+            public tblReceipt_UpdateRow[] GettblReceipt_UpdateRows() {
                 if ((this.Table.ChildRelations["tblItemMastertblReceipt2"] == null)) {
                     return new tblReceipt_UpdateRow[0];
                 }
@@ -2667,48 +2670,44 @@ namespace KakeiboWebApp.Data.DataSetKakeiboTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT          ID, [DATE], GOODS, PRICE, ITEM_ID, SYUSHI, ITEM_DETAILS_ID\r\nFROM " +
-                "           tblReceipt\r\nWHERE           ([DATE] >= ? AND [DATE] <= ?)\r\nORDER BY  " +
-                "   [DATE]";
+            this._commandCollection[2].CommandText = "SELECT [DATE], GOODS, ID, ITEM_DETAILS_ID, ITEM_ID, PRICE, SYUSHI FROM tblReceipt" +
+                " WHERE ([DATE] >= ?) AND ([DATE] <= ?) ORDER BY [DATE]";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE1", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT          ID, [DATE], GOODS, PRICE, ITEM_ID, SYUSHI, ITEM_DETAILS_ID\r\nFROM " +
-                "           tblReceipt\r\nWHERE           ([DATE] >= ? AND [DATE] <= ?) AND (GOODS " +
-                "LIKE \'%\' & ? & \'%\')\r\nORDER BY     [DATE]";
+            this._commandCollection[3].CommandText = "SELECT [DATE], GOODS, ID, ITEM_DETAILS_ID, ITEM_ID, PRICE, SYUSHI FROM tblReceipt" +
+                " WHERE ([DATE] >= ?) AND ([DATE] <= ?) AND (GOODS LIKE \'%\' & ? & \'%\') ORDER BY [" +
+                "DATE]";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE1", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GOODS", global::System.Data.OleDb.OleDbType.WChar, 50, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GOODS", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT          ID, [DATE], GOODS, PRICE, ITEM_ID, SYUSHI, ITEM_DETAILS_ID\r\nFROM " +
-                "           tblReceipt\r\nWHERE           ([DATE] >= ? AND [DATE] <= ?) AND (ITEM_I" +
-                "D = ?)\r\nORDER BY     [DATE]";
+            this._commandCollection[4].CommandText = "SELECT [DATE], GOODS, ID, ITEM_DETAILS_ID, ITEM_ID, PRICE, SYUSHI FROM tblReceipt" +
+                " WHERE ([DATE] >= ?) AND ([DATE] <= ?) AND (ITEM_ID = ?) ORDER BY [DATE]";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE1", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ITEM_ID", global::System.Data.OleDb.OleDbType.UnsignedTinyInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ITEM_ID", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT          ID, [DATE], GOODS, PRICE, ITEM_ID, SYUSHI, ITEM_DETAILS_ID\r\nFROM " +
-                "           tblReceipt\r\nWHERE           (GOODS LIKE \'%\' & ? & \'%\')\r\nORDER BY     " +
-                "[DATE]";
+            this._commandCollection[5].CommandText = "SELECT [DATE], GOODS, ID, ITEM_DETAILS_ID, ITEM_ID, PRICE, SYUSHI FROM tblReceipt" +
+                " WHERE (GOODS LIKE \'%\' & ? & \'%\') ORDER BY [DATE]";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GOODS", global::System.Data.OleDb.OleDbType.WChar, 50, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GOODS", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT          ID, [DATE], GOODS, PRICE, ITEM_ID, SYUSHI, ITEM_DETAILS_ID\r\nFROM " +
-                "           tblReceipt\r\nWHERE           (FORMAT([DATE], \'yyyymm\') = ?)\r\nORDER BY " +
-                "    [DATE]";
+            this._commandCollection[6].CommandText = "SELECT [DATE], GOODS, ID, ITEM_DETAILS_ID, ITEM_ID, PRICE, SYUSHI FROM tblReceipt" +
+                " WHERE (FORMAT([DATE], \'yyyymm\') = ?) ORDER BY [DATE]";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Param1", global::System.Data.OleDb.OleDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = "SELECT          ID, [DATE], GOODS, PRICE, ITEM_ID, SYUSHI, ITEM_DETAILS_ID\r\nFROM " +
-                "           tblReceipt\r\nWHERE           ([DATE] = ?)\r\nORDER BY     [DATE]";
+            this._commandCollection[7].CommandText = "SELECT [DATE], GOODS, ID, ITEM_DETAILS_ID, ITEM_ID, PRICE, SYUSHI FROM tblReceipt" +
+                " WHERE ([DATE] = ?) ORDER BY [DATE]";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DATE", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DATE", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[8] = new global::System.Data.OleDb.OleDbCommand();
@@ -3606,9 +3605,14 @@ ORDER BY     tblReceipt.[DATE]";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByOneRecord(DataSetKakeibo.tblReceiptDataTable dataTable, int ID) {
+        public virtual int FillByOneRecord(DataSetKakeibo.tblReceiptDataTable dataTable, global::System.Nullable<int> ID) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ID));
+            if ((ID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }

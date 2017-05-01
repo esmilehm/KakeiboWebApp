@@ -160,6 +160,7 @@ namespace KakeiboWebApp.View
         /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            //--- 画面の値をテーブルに取得 ---
             //--- テーブル反映処理 ---
             Boolean flg = _model.tblReceptDeleteSubmit;
 

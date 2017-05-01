@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewListForm.aspx.cs" Inherits="KakeiboWebApp.View.ViewListForm" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewListForm.aspx.cs" EnableSessionState="true" Inherits="KakeiboWebApp.View.ViewListForm" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -54,9 +54,9 @@ padding-right: 4px;
 <h1>明細一覧</h1>
 
 <div class="btn-group">
-  <asp:Button ID="btnReturn" runat="server" class="btn btn-primary btn-lg" onclick="btnReturn_Click" Text="戻る" />
-  <asp:Button ID="btnClose" runat="server" class="btn btn-primary btn-lg" onclick="btnClose_Click" Text="閉じる" />
-  <asp:Button ID="btnAdd"   runat="server" class="btn btn-primary btn-lg" onclick="btnAdd_Click"   Text="新規登録" />
+  <asp:Button ID="btnReturn" runat="server" class="btn btn-primary btn-lg" onclick="btnReturn_Click"  TabIndex=1 Text="戻る" />
+  <asp:Button ID="btnClose"  runat="server" class="btn btn-primary btn-lg" onclick="btnClose_Click"   TabIndex=2 Text="閉じる" />
+  <asp:Button ID="btnAdd"    runat="server" class="btn btn-primary btn-lg" onclick="btnAdd_Click"     TabIndex=3 Text="新規登録" />
 </div>
 
 <%-- 検索日＆商品--%>
@@ -103,7 +103,7 @@ padding-right: 4px;
 <%-- グリッドビュー --%>
   <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None"
   OnPageIndexChanging="GridView1_PageIndexChanging" OnSelectedIndexChanged="GridView1_SelectedIndexChanged"
-  AutoGenerateColumns="False" CssClass="table table-bordered table-striped table-hover">
+  AutoGenerateColumns="False" CssClass="table table-bordered table-striped table-hover" TabIndex=4>
   <AlternatingRowStyle BackColor="White" />
   <Columns>
   <asp:BoundField DataField="ID" HeaderText="No"></asp:BoundField>
@@ -111,6 +111,8 @@ padding-right: 4px;
   <asp:BoundField DataField="Item" HeaderText="品目名"></asp:BoundField>
   <asp:BoundField DataField="GOODS" HeaderText="商品名"></asp:BoundField>
   <asp:BoundField DataField="PRICE" HeaderText="金額"></asp:BoundField>
+    <asp:ButtonField ButtonType="Button" CommandName="Select" HeaderText="選択" 
+      ShowHeader="True" Text="選択ボタン" />
   </Columns>
   <PagerStyle CssClass="PagerStyle" horizontalalign="Center"/>
   </asp:GridView>

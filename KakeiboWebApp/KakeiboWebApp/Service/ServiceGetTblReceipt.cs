@@ -28,6 +28,7 @@ namespace KakeiboWebApp.Service
         public ServiceGetTblReceipt() : base(THIS_CLASS_NAME) 
         {
             //初期設定＆初期処理があれば記入
+            // todo コンストラクタでmodelクラスのModelListFormを生成しなかったのはなぜだったか？
         }
         #endregion
 

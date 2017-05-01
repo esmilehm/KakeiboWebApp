@@ -18,6 +18,22 @@ namespace KakeiboWebApp.Model
     {
 
         #region １．プライベート変数
+
+        /// <summary>
+        /// レシートテーブルから取得するデータをこのインターフェースを使ってやり取りする方法を検討
+        /// </summary>
+        /// <remarks>
+        /// 【インターフェースを使う用途】
+        /// １．クラスを統一
+        /// ２．検索条件時のif文をなくす
+        /// ３．検索条件は、項目によって変わるが取得するデータは同じなので統一したい。
+        /// ・・検索項目の数が異なる
+        /// ・・テーブルから取得して結果を返すという機能は同じ
+        /// ・・これをまとめる方法は？
+        /// ・・・検索条件毎のクラスを作る？
+        /// </remarks>
+        private KakeiboWebApp.Model.Receipt.ReceiptInterface _recipt;
+
         /// <summary>
         /// テキストボックス
         /// </summary>

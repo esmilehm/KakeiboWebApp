@@ -76,7 +76,7 @@ namespace KakeiboWebApp.Service
             
             //--- DBのテーブルを取得 ---
             int result = ta.FillByOneRecord(ds.tblReceipt,id);
-            
+
             //--- モデルクラスに受渡し --
             ((ModelDetailForm)_model).dsKakeibo = ds;
             ((ModelDetailForm)_model).tblReceipt = ds.tblReceipt;
@@ -86,6 +86,14 @@ namespace KakeiboWebApp.Service
             ((ModelDetailForm)_model).price = ds.tblReceipt[0].PRICE;
             ((ModelDetailForm)_model).itemid = ds.tblReceipt[0].ITEM_ID;
             ((ModelDetailForm)_model).itemdetailsid = ds.tblReceipt[0].ITEM_DETAILS_ID;
+
+            //### 検討中ロジック追加 ###
+            // note: 更新・削除用にtblReceipt_Updateも取得する
+            tblReceipt_UpdateTableAdapter ta_Update = new tblReceipt_UpdateTableAdapter();
+            int result_Update = ta_Update.FillByOneRecord(ds.tblReceipt_Update, id);
+            ((ModelDetailForm)_model).tblReceipt_Update = ds.tblReceipt_Update;
+            //### 検討中ロジック追加 ###
+
 
             //--- 取得結果をログに出力 ---
             System.Diagnostics.Trace.Write(ds.tblReceipt.Count.ToString());
